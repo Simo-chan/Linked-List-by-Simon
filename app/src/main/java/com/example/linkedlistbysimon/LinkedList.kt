@@ -7,14 +7,16 @@ class LinkedList {
     private val lastNode: Node?
         get() {
             var currentNode = first
+            currentNode?.let { return currentNode }
             while (currentNode?.next != null) {
                 currentNode = currentNode.next
             }
             return currentNode
         }
 
+
     fun addNode(data: Int) {
-        val newNode = Node(data, null, null)
+        val newNode = Node(data, null, lastNode)
         if (first == null) {
             first = newNode
         } else {
@@ -22,10 +24,9 @@ class LinkedList {
         }
     }
 
-    fun removeLastNode(): Node? {
+    fun removeLastNode() {
         val preLast = lastNode?.prev
         preLast?.next = null
-        return preLast
     }
 }
 
